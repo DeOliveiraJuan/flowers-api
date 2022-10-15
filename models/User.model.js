@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const ROUNDS = 10;
 
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-const PASSWORD_PATTERN = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+// const PASSWORD_PATTERN = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 
 const UserSchema = new mongoose.Schema(
     {
@@ -32,7 +32,13 @@ const UserSchema = new mongoose.Schema(
         phoneNumber: {
             type: Number,
             required: [true, 'Phone number is required'],
-            unique: true
+            unique: true,
+            minlength: 9,
+            maxlength: 11
+        },
+        admin: {
+            type: Boolean,
+            default: false // ¿Cómo cambio a true cuando si es admin?
         }
     },
     {
