@@ -10,15 +10,16 @@ module.exports.list = (req, res, next) => {
 }
 
 module.exports.create = (req, res, next) => {
-    User.create(req.body)
+    const { name, lastName, email, password, phoneNumber } = req.body
+    
+    User.create({ name, lastName, email, password, phoneNumber })
      .then(user => res.status(201).json(user))
      .catch(next)
 }
 
 module.exports.currentUser = (req, res, next) => {
-    const { id } = req.params
     
-    User.findById(id)
+    User.findById(req.currentUser)
     .then(users => {
         res.json(users)
      })

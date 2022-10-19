@@ -22,7 +22,7 @@ const UserSchema = new mongoose.Schema(
             match: [EMAIL_PATTERN, 'Email is not valid'],
             trim: true,
             lowercase: true,
-            unique: true
+            unique: [true, 'Email already exist']
         }, 
         password: {
             type: String,
@@ -36,9 +36,9 @@ const UserSchema = new mongoose.Schema(
             minlength: 9,
             maxlength: 11
         },
-        admin: {
+        isAdmin: {
             type: Boolean,
-            default: false // ¿Cómo cambio a true cuando si es admin?
+            default: false 
         }
     },
     {
