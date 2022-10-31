@@ -17,11 +17,15 @@ module.exports.create = (req, res, next) => {
      .catch(next)
 }
 
-module.exports.currentUser = (req, res, next) => {
-    
+module.exports.getCurrentUser = (req, res, next) => {
+
     User.findById(req.currentUser)
-    .then(users => {
-        res.json(users)
+    .then(user => {
+        if (!user) {
+            next(createError(404, 'User not found 🤡'));
+        } else {
+            res.json(user)
+        }
      })
      .catch(next)
 }

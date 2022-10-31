@@ -14,6 +14,7 @@ module.exports.login = (req, res, next) => {
         .then(user => {
             if(!user) {
                 next(LoginError) //Entra si no hay usuario
+                console.log("NO HAY USUARIO 🤡")
             } else {
                 user.checkPassword(password) //Revisamos que la contraseña sea válida
                 .then(result => {
@@ -26,7 +27,7 @@ module.exports.login = (req, res, next) => {
                             },
                             'super secret',
                             {
-                                expiresIn: '2h'
+                                expiresIn: '1h'
                             }
                         ) //Firma y envia el token jwt
 

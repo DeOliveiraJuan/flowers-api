@@ -9,7 +9,6 @@ module.exports.isAuthenticated = (req, res, next) => {
 
         if(type === 'Bearer') {
             if(token) {
-
                 jwt.verify(token, 'Super secret', (err, decodedToken) => {
                     if(err) {
                         next(err);

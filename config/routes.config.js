@@ -10,8 +10,8 @@ const shoppingCartController = require('../controllers/shoppingCart.controller')
 
 router.get('/users', usersController.list)
 router.post('/users', usersController.create)
+router.get('/users/me', usersController.getCurrentUser)
 router.delete('/users/:id', authMiddleware.isAuthenticated, usersController.delete)
-router.get('/users/me', authMiddleware.isAuthenticated, usersController.currentUser)
 router.put('/users/:id', authMiddleware.isAuthenticated, usersController.update)
 
 //Shipping Address
