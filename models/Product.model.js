@@ -11,13 +11,18 @@ const ProductSchema = new mongoose.Schema(
         type: Number,
         required: [true, 'Product price is required']  
      },
-     photos: {
+     images: {
         type: [String],
-        default: ['https://cdn.vectorstock.com/i/1000x1000/89/10/pattern-with-tulips-vector-19608910.webp']
+        default: ['https://cdn.thecolvinco.com/photos_cache_gallery/new-york/new-york-26a585cc-de9f-4d85-a9bb-d68088ffa6cb.jpg'],
+        // required: [true, 'Product photo is required']  
      },
      description: {
         type: String,
-     }   
+     },
+     isPlant: {
+        type: Boolean,
+        default: false
+     }
     },
 {
     toJSON: {

@@ -16,7 +16,7 @@ module.exports.login = (req, res, next) => {
                 next(LoginError) //Entra si no hay usuario
                 console.log("NO HAY USUARIO 🤡")
             } else {
-                user.checkPassword(password) //Revisamos que la contraseña sea válida
+                user.checkPassword(password) //Revisa que la contraseña sea válida
                 .then(result => {
                     if(!result) {
                         next(LoginError); //Entra si la contraseña es incorrecta
@@ -25,7 +25,7 @@ module.exports.login = (req, res, next) => {
                             {
                                 id: user.id,
                             },
-                            'super secret',
+                            'secret',
                             {
                                 expiresIn: '1h'
                             }

@@ -8,15 +8,40 @@ module.exports.list = (req, res, next) => {
      .catch(next)
 }
 
-module.exports.create = (req, res, next) => {
-    const { name, price, photo, description } = req.body
-    
-    Product.create({ name, price, photo, description })
-     .then(user => res.status(201).json(user))
+module.exports.listPlants = (req, res, next) => {
+    Product.find({ isPlant: true })
+     .then(products => {
+        res.json(products)
+     })
      .catch(next)
 }
 
-module.exports.currentProduct = (req, res, next) => {
+module.exports.listFlowers = (req, res, next) => {
+    Product.find({ isPlant: false })
+     .then(products => {
+        res.json(products)
+     })
+     .catch(next)
+}
+
+module.exports.create = (req, res, next) => {
+
+    console.log(req.body);
+
+    if (req.files) {
+        console.log(req.files);
+
+        req.body.images = null
+        // aqui las meteremos en req.body.images
+    }
+    req.body.images = null // Situacional, borrar cuando este multer
+    
+    Product.create(req.body)
+     .then(product => res.status(201).json(product))
+     .catch(next)
+}
+
+module.exports.productDetail = (req, res, next) => {
     const { id } = req.params
     
     Product.findById(id)

@@ -25,16 +25,9 @@ module.exports.getCurrentUser = (req, res, next) => {
             next(createError(404, 'User not found 🤡'));
         } else {
             res.json(user)
+            console.log(user)
         }
      })
-     .catch(next)
-}
-
-module.exports.delete = (req, res, next) => {
-    const { id } = req.params
-    
-    User.findByIdAndDelete(id)
-     .then(user => res.status(204).json(user))
      .catch(next)
 }
 
@@ -43,5 +36,13 @@ module.exports.update = (req, res, next) => {
     
     User.findByIdAndUpdate(id, req.body, { new: true })
      .then(user => res.status(202).json(user))
+     .catch(next)
+}
+
+module.exports.delete = (req, res, next) => {
+    const { id } = req.params
+    
+    User.findByIdAndDelete(id)
+     .then(user => res.status(204).json(user))
      .catch(next)
 }

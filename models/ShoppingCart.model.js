@@ -2,21 +2,19 @@ const mongoose = require('mongoose');
 
 const ShoppingCartSchema = new mongoose.Schema(
     {
-    user: {
+    userId: {
          type: mongoose.Schema.Types.ObjectId,
          ref: 'User',
-         required: true
     },
     products: [{
-        product: {
+        productId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Product',
-            required: true,
         },
-        units: {
+        qty: {
             type: Number,
             min: 1,
-            max: 99
+            max: 20
         }
       }]
     },
@@ -25,6 +23,7 @@ const ShoppingCartSchema = new mongoose.Schema(
             virtuals: true,
             transform: (doc, ret) => {
                 delete ret.__v;
+                delete ret._id;
     
                 return ret
             }

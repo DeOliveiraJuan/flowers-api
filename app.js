@@ -18,7 +18,7 @@ app.use(
 )
 
 app.use(logger('dev'));
-app.use(express.json()); 
+app.use(express.json());
 
 const routes = require('./config/routes.config')
 app.use('/api', routes)
