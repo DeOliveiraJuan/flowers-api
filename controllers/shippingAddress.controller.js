@@ -41,3 +41,4 @@ module.exports.delete = (req, res, next) => {
     .then(shippingAddress => res.status(204).json(shippingAddress))
     .catch(next);
 };
+

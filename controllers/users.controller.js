@@ -12,6 +12,7 @@ module.exports.list = (req, res, next) => {
 module.exports.create = (req, res, next) => {
     const { name, lastName, email, password, phoneNumber } = req.body
     
+    
     User.create({ name, lastName, email, password, phoneNumber })
      .then(user => res.status(201).json(user))
      .catch(next)
