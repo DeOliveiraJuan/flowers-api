@@ -19,7 +19,8 @@
   },
   "scripts": {
     "start": "node app.js",
-    "dev": "DEBUG=flowers-api:* nodemon ./app.js"
+    "dev": "DEBUG=flowers-api:* nodemon ./app.js",
+    "vercel-build": "echo hello"
   },
   "keywords": [],
   "author": "",
